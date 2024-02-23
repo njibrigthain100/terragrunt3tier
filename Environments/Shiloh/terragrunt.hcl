@@ -1,7 +1,10 @@
 
 terraform {
-    source = "git::git@github.com:njibrigthain100/terraform3tier.git"
+    source = "git::git@github.com:njibrigthain100/terragrunt-modules.git"
     
+}
+include "root" {
+    path = find_in_parent_folders()
 }
 
 include "company" {
@@ -19,42 +22,39 @@ include "env" {
     expose = true 
 }
 
-include "root" {
-    path = find_in_parent_folders()
-}
-
-locals = {
+locals  {
     build_environment = "sit"
+    aws_region = "us-east-1"
+    state_bucket = "distributorbk"
+    dynamoDB_table = "Terraform"
    
 }
 
-
-
-
 inputs = {
-       Service = include.company.locals.company_service.include.env.account_name_abr
-       Owner   = include.company.locals.account_owner.include.env.account_name_abr
-       Environment = include.company.locals.aws_account_environment.include.env.account_name_abr
-       Tier        = include.cloud.locals.cloud_tier.include.env.account_name_abr
-       Build-Method = include.cloud.locals.cloud_build_method.include.env.account_name_abr
-       CostCenter   = include.company.locals.company_cost_center.include.env.account_name_abr
-       Complaince   = include.company.locals.company_compliance.include.env.account_name_abr
-       instance-profile = include.env.locals.cloud_profile.include.env.account_name_abr  
+       Service = include.env.locals.resource_service
+       Owner   = include.env.locals.resource_owner
+       Environment = include.env.locals.resource_environment
+       Tier        = include.env.locals.resource_Tier
+       Build-Method = include.env.locals.resource_build_method
+       CostCenter   = include.env.locals.resource_costcenter
+       Compliance   = include.env.locals.resource_compliance
+       instance-profile = include.env.locals.resource_profile 
 }
 
-
-generate "backend" {
+remote_state {
+    backend = "s3"
+    generate = {
     path = "s3-backend.tf"
     if_exists = "overwrite_terragrunt"
-    contents = <<EOF
-terraform {
-    backend "s3" {
-        bucket = "terragrunt-3tier"
-        key   =  "terraform/${local.build_environment}/terraform.tfstate"
-        region = "us-east-1"
+ }
+ config = {
+        bucket = local.state_bucket
+        key   =  "${local.build_environment}/terraform.tfstate"
+        dynamodb_table = local.dynamoDB_table
+        region = local.aws_region
         encrypt = true
-        profile = include.env.locals.cloud_profile.include.env.account_name_abr
+        profile = "shilohIT"
     }
 }
-EOF
-}
+
+

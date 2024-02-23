@@ -6,7 +6,7 @@ locals {
         }
 
         aws_account_environment = {
-            shiloh= "dev"
+            shiloh = "dev"
             qa = "qa"
             devops = "prod"
         }
