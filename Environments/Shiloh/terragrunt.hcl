@@ -23,7 +23,7 @@ include "env" {
 }
 
 locals  {
-    build_environment = "SIT"
+    build_environment = "dev"
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
