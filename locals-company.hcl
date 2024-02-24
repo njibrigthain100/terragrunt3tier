@@ -29,8 +29,8 @@ locals {
             devops = "human resources"
         }
         account_owner = {
-            shiloh = "kbrigthain@gmail.com"
-            qa = "kadeck1@yahoo.com"
-            devops = "njibrigthain@yahoo.com"
+            shiloh = "Customer-Application-a"
+            qa = "Customer-Application-b"
+            devops = "Customer-Application-c"
         }
 }
