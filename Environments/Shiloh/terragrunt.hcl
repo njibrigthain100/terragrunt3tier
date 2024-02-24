@@ -87,7 +87,20 @@ remote_state {
         region = local.aws_region
         encrypt = true
         profile = include.env.locals.resource_profile 
+        role_arn = "${local.iam_role}"
     }
-}
+// }
+// generate "provider" {
+//   path      = "provider.tf"
+//   if_exists = "overwrite_terragrunt"
+//   contents  = <<EOF
+// provider "aws" {
+//   region   = "${local.aws_region}"
+//   assume_role {
+//     role_arn = "${local.iam_role}"
+//   }
+// }
+// EOF
+// }
 
 
