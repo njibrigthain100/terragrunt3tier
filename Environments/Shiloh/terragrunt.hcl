@@ -23,7 +23,7 @@ include "env" {
 }
 
 locals  {
-    build_environment = "stage"
+    build_environment = "trn"
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
