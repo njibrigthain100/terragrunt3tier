@@ -27,7 +27,7 @@ locals  {
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
-    iam_role = "arn:aws:iam::485147667400:instance-profile/AdminFullAccess"
+    iam_role = "arn:aws:iam::485147667400:role/AdminFullAccessWithAccountTrust"
    
 }
 
@@ -89,18 +89,18 @@ remote_state {
         profile = include.env.locals.resource_profile 
         role_arn = "${local.iam_role}"
     }
-// }
-// generate "provider" {
-//   path      = "provider.tf"
-//   if_exists = "overwrite_terragrunt"
-//   contents  = <<EOF
-// provider "aws" {
-//   region   = "${local.aws_region}"
-//   assume_role {
-//     role_arn = "${local.iam_role}"
-//   }
-// }
-// EOF
-// }
+}
+generate "provider" {
+  path      = "provider.tf"
+  if_exists = "overwrite"
+  contents  = <<EOF
+provider "aws" {
+  region   = "${local.aws_region}"
+  assume_role {
+    role_arn = "${local.iam_role}"
+  }
+}
+EOF
+}
 
 
