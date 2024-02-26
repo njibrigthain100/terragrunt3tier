@@ -45,7 +45,26 @@ jobs:
         sudo wget -q -O /bin/terragrunt "https://github.com/gruntwork-io/terragrunt/releases/download/v0.55.9/terragrunt_linux_amd64"
         sudo chmod +x /bin/terragrunt
         terragrunt -v
-    
+    # Set up ssh directory for terragrunt 
+    - name: Set up ssh 
+      run: |
+          ssh_dir="/root/.ssh"
+          # Check if .ssh directory exists
+          if [ -d "$ssh_dir" ]; then
+              echo "The /.ssh directory already exists."
+          else
+              # If not, create /.ssh directory with elevated privileges
+              sudo mkdir -p "$ssh_dir"
+              echo "The /.ssh directory has been created."
+          fi
+          aws s3 cp s3://bkmicroservices/Keys/imagebuilder ~/.ssh/imagebuilder
+          chmod 400 ~/.ssh/imagebuilder
+          echo "Host github.com" >> ~/.ssh/config
+          echo "   IdentityFile ~/.ssh/imagebuilder" >> ~/.ssh/config
+          echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "   IdentitiesOnly yes"  >> ~/.ssh/config
+          echo "   PreferredAuthentications publickey" >> ~/.ssh/config 
+          chmod 600 ~/.ssh/config
 
     # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terragrunt Init
