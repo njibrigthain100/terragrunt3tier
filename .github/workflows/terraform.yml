@@ -9,9 +9,15 @@ on:
     #   - '.github/workflow/terraform.yaml'
     #   - 'Environments/Shiloh/*'
 env:
-  AWS_ACESS_KEY_ID: ${{ secrets.AWS_SHILOH_ACCESS_KEY_ID }}
-  AWS_SECRETS_ACCESS_KEY: ${{ secrets.AWS_SHILOH_SECRET_ACCESS_KEY_ID }}
+  AWS_ROLE: ${{ secrets.AWS_ROLE }}
+  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
   DEPLOYMENT_PATH: Environments/Shiloh
+
+permissions:
+  packages: write  # This is required for requesting JWT
+  contents: read   #This is required for action/checkout
+  id-token: write
+  
 
 jobs:
   Terragrunt:
@@ -25,6 +31,13 @@ jobs:
         working-directory: ${{ env.DEPLOYMENT_PATH }}
 
     steps:
+    - name: Configure aws credentials 
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ secrets.AWS_ROLE }}
+        role-session-name: samplerolesession
+        aws-region: ${{ secrets.AWS_REGION}}
+
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
@@ -44,13 +57,11 @@ jobs:
       run: |
         sudo wget -q -O /bin/terragrunt "https://github.com/gruntwork-io/terragrunt/releases/download/v0.55.9/terragrunt_linux_amd64"
         sudo chmod +x /bin/terragrunt
-        terragrunt -v
-
     # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terragrunt Init
-      run: terragrunt init --terragrunt-non-interactive
+      run: terragrunt init 
       env:
-        private_ssh_key: ${{ secrets.PRIVATE_SSH_KEY }}
+        AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
 
     # Generates an execution plan for Terragrunt
     - name: Terragrunt Plan
