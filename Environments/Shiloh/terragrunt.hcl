@@ -1,6 +1,6 @@
 
 terraform {
-    source = "terraform-modules/main.tf"
+    source = "terraform-modules/**"
     #git::git@github.com:njibrigthain100/terragrunt-modules.git
     
 }
