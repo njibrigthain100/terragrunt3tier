@@ -1,6 +1,6 @@
 
 terraform {
-    source = "git::ssh://git@github.com/njibrigthain100/terragrunt-modules.git"
+    source = "git::git@github.com:njibrigthain100/terragrunt-modules.git"
     
 }
 include "root" {
@@ -23,7 +23,7 @@ include "env" {
 }
 
 locals  {
-    build_environment = "trn"
+    build_environment = "prod"
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
