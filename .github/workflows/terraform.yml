@@ -61,7 +61,9 @@ jobs:
     - name: Terragrunt Init
       env:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+
       run: terragrunt init -backend-config="bucket"=${AWS_BUCKET_NAME}" -backend-config="key=tfstate" --terragrunt-iam-role "arn:aws:iam::485147667400:role/github_actions_role"
+
 
 
     # Generates an execution plan for Terragrunt
