@@ -13,6 +13,11 @@ env:
   AWS_SECRETS_ACCESS_KEY: ${{ secrets.AWS_SHILOH_SECRET_ACCESS_KEY_ID }}
   DEPLOYMENT_PATH: Environments/Shiloh
 
+permissions:
+  packages: write
+  contents: read
+  
+
 jobs:
   Terragrunt:
     name: 'Terragrunt'
