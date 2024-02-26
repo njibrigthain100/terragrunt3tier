@@ -1,7 +1,6 @@
 
 terraform {
-    source = "git::https://github.com/njibrigthain100/terragrunt-modules.git"
-  #  git::git@github.com:njibrigthain100/terragrunt-modules.git
+    source = "git::git@github.com:njibrigthain100/terragrunt-modules.git"
     
 }
 include "root" {

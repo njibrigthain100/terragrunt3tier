@@ -46,10 +46,6 @@ jobs:
         sudo chmod +x /bin/terragrunt
         terragrunt -v
     
-        
-    # Clone the source code code to the github runner
-    - name: Clone terraform source code
-      run: git clone https://github.com/njibrigthain100/terragrunt-modules.git
 
     # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terragrunt Init
@@ -57,8 +53,7 @@ jobs:
       env:
         AWS_ACESS_KEY_ID: ${{ secrets.AWS_SHILOH_ACCESS_KEY_ID }}
         AWS_SECRETS_ACCESS_KEY: ${{ secrets.AWS_SHILOH_SECRET_ACCESS_KEY_ID }}
-      # env:
-      #   private_ssh_key: ${{ secrets.PRIVATE_SSH_KEY }}
+        private_ssh_key: ${{ secrets.PRIVATE_SSH_KEY }}
 
     # Generates an execution plan for Terragrunt
     - name: Terragrunt Plan
