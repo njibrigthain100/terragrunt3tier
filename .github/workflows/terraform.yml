@@ -38,6 +38,10 @@ jobs:
         role-to-assume: arn:aws:iam::485147667400:role/github_actions_role
         role-session-name: samplerolesession
         aws-region: ${{ env.AWS_REGION}}
+    
+    - name: get caller identity 1
+      run: |
+          aws sts get-caller-identity
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
