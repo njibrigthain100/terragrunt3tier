@@ -11,7 +11,7 @@ on:
 env:
   AWS_ROLE: ${{ secrets.AWS_ROLE }}
   AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
-  DEPLOYMENT_PATH: Environments/Shiloh
+  # DEPLOYMENT_PATH: Environments/Shiloh
 
 permissions:
   packages: write  # This is required for requesting JWT
@@ -28,7 +28,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ${{ env.DEPLOYMENT_PATH }}
+        # working-directory: ${{ env.DEPLOYMENT_PATH }}
 
     steps:
     - name: Configure aws credentials 
