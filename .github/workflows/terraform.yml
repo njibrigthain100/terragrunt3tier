@@ -53,7 +53,7 @@ jobs:
 
     # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terragrunt Init
-      run: terragrunt init --terragrunt-non-interactive
+      run: terragrunt init 
       # env:
       #   private_ssh_key: ${{ secrets.PRIVATE_SSH_KEY }}
 
