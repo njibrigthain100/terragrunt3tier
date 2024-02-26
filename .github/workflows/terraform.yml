@@ -60,7 +60,7 @@ jobs:
     # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terragrunt Init
       run: terragrunt init 
-      env:
+      # env:
         # AWS_ACESS_KEY_ID: ${{ secrets.AWS_ACESS_KEY_ID }}
         # AWS_SECRETS_ACCESS_KEY: ${{ secrets.AWS_SECRETS_ACCESS_KEY }}
         # private_ssh_key: ${{ secrets.PRIVATE_SSH_KEY }}
