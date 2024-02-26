@@ -59,9 +59,10 @@ jobs:
         sudo chmod +x /bin/terragrunt
     # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terragrunt Init
-      run: terragrunt init 
       env:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+      run: terragrunt init -backend-config="bucket"=${AWS_BUCKET_NAME}" -backend-config="key=tfstate" --terragrunt-iam-role "${AWS_ROLE}"
+
 
     # Generates an execution plan for Terragrunt
     - name: Terragrunt Plan
