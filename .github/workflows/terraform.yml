@@ -52,8 +52,12 @@ jobs:
         sudo chmod +x /bin/terragrunt
     # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terragrunt Init
-      id: init
-      run: terragrunt init 
+      uses: terragrunt init 
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRETS_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
     # Generates an execution plan for Terragrunt
     - name: Terragrunt Plan
       id: plan
