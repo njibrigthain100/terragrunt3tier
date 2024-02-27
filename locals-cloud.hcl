@@ -8,7 +8,7 @@ locals {
     }
 
     cloud_build_method = {
-        shiloh = "greenfiled"
+        shiloh = "terragrunt"
         qa = "terrform"
         devops = "ansible"
     }
