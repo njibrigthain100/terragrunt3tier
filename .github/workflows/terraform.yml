@@ -61,9 +61,9 @@ jobs:
     - name: Terragrunt Init
       env:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
-      run: terragrunt init -backend-config="bucket"=${AWS_BUCKET_NAME}" -backend-config="key=tfstate" --terragrunt-iam-role "${AWS_ROLE}"
-
-
+      run: | 
+        cd Environments/Shiloh  
+        terragrunt init 
     # Generates an execution plan for Terragrunt
     - name: Terragrunt Plan
       run: terragrunt run-all plan --terragrunt-non-interactive
