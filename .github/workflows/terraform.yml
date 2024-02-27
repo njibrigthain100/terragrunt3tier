@@ -15,10 +15,7 @@ jobs:
   Terragrunt:
     name: 'Terragrunt'
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
+    env:  
       DEPLOYMENT_PATH: Environments/Shiloh
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -27,12 +24,12 @@ jobs:
         working-directory: ${{ env.DEPLOYMENT_PATH }}
 
     steps:
-    # - name: Configure aws credentials 
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #     role-to-assume: ${{ secrets.AWS_ROLE }}
-    #     role-session-name: samplerolesession
-    #     aws-region: ${{ secrets.AWS_REGION}}
+    - name: Configure aws credentials 
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
 
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
