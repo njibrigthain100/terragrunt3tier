@@ -87,7 +87,7 @@ remote_state {
         dynamodb_table = local.dynamoDB_table
         region = local.aws_region
         encrypt = true
-        profile = include.env.locals.resource_profile 
+        // profile = include.env.locals.resource_profile 
         // role_arn = "${local.iam_role}"
     }
 }
