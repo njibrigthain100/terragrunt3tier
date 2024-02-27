@@ -84,7 +84,7 @@ remote_state {
 
  config = {
         bucket = local.state_bucket
-        key   =  "${local.build_environment}/${include.company.locals.aws_account_map}/terraform.tfstate"
+        key   =  "${local.build_environment}/${include.company.locals.aws_account_map[shiloh]}/terraform.tfstate"
         dynamodb_table = local.dynamoDB_table
         region = local.aws_region
         encrypt = true
