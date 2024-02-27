@@ -1,6 +1,6 @@
 
 terraform {
-    source = "git::git@github.com:njibrigthain100/terragrunt-modules.git"
+    source = "git::https://github.com/njibrigthain100/terragrunt-modules.git"
     #../../terraform-modules
     #git::git@github.com:njibrigthain100/terragrunt-modules.git
     
@@ -88,9 +88,9 @@ remote_state {
         dynamodb_table = local.dynamoDB_table
         region = local.aws_region
         encrypt = true
+    }
+}
 
-}
-}
 generate "provider" {
   path      = "provider.tf"
   if_exists = "overwrite"
