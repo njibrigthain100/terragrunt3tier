@@ -61,9 +61,7 @@ jobs:
     - name: Terragrunt Init
       env:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
-      run: | 
-        cd Environments/Shiloh  
-        terragrunt init 
+      run: terragrunt init 
     # Generates an execution plan for Terragrunt
     - name: Terragrunt Plan
       run: terragrunt run-all plan --terragrunt-non-interactive
