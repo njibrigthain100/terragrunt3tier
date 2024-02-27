@@ -81,6 +81,7 @@ remote_state {
     path = "s3-backend.tf"
     if_exists = "overwrite_terragrunt"
  }
+}
  config = {
         bucket = local.state_bucket
         key   =  "${local.build_environment}/terraform.tfstate"
