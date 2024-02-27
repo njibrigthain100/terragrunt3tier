@@ -11,7 +11,7 @@ on:
 env:
   AWS_ROLE: ${{ secrets.AWS_ROLE }}
   AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
-  # DEPLOYMENT_PATH: Environments/Shiloh
+  DEPLOYMENT_PATH: Environments/Shiloh
 
 permissions:
   packages: write  # This is required for requesting JWT
@@ -28,7 +28,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        # working-directory: ${{ env.DEPLOYMENT_PATH }}
+        working-directory: ${{ env.DEPLOYMENT_PATH }}
 
     steps:
     - name: Configure aws credentials 
@@ -59,11 +59,14 @@ jobs:
         sudo chmod +x /bin/terragrunt
     # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terragrunt Init
-      env:
+      uses: terragrunt init 
+      with:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
-      run: | 
-        cd Environments/Shiloh  
-        terragrunt init 
+        role-to-assume: ${{ secrets.AWS_ROLE }}
+        role-session-name: samplerolesession
+        aws-region: ${{ secrets.AWS_REGION}}
+  
+
     # Generates an execution plan for Terragrunt
     - name: Terragrunt Plan
       run: terragrunt run-all plan --terragrunt-non-interactive

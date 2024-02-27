@@ -1,6 +1,6 @@
 
 terraform {
-    source = "terraform-modules"
+    source = "../../terraform-modules"
     #git::git@github.com:njibrigthain100/terragrunt-modules.git
     
 }
@@ -28,7 +28,7 @@ locals  {
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
-    iam_role = "arn:aws:iam::485147667400:role/AdminFullAccessWithAccountTrust"
+    iam_role = "arn:aws:iam::485147667400:role/github_actions_role"
    
 }
 
@@ -87,8 +87,8 @@ remote_state {
         dynamodb_table = local.dynamoDB_table
         region = local.aws_region
         encrypt = true
-        // profile = include.env.locals.resource_profile 
-        role_arn = "${local.iam_role}"
+        profile = include.env.locals.resource_profile 
+        // role_arn = "${local.iam_role}"
     }
 }
 generate "provider" {
