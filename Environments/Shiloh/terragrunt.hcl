@@ -28,7 +28,7 @@ locals  {
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
-    iam_role = "arn:aws:iam::485147667400:role/github_actions_role"
+    // iam_role = "arn:aws:iam::485147667400:role/github_actions_role"
    
 }
 
