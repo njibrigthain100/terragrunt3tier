@@ -56,7 +56,7 @@ jobs:
         sudo chmod +x /bin/terragrunt
     # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terragrunt Init
-      uses: terragrunt init 
+      run: terragrunt init 
     # Generates an execution plan for Terragrunt
     - name: Terragrunt Plan
       run: terragrunt run-all plan --terragrunt-non-interactive
