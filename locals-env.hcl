@@ -48,6 +48,7 @@ locals {
     resource_db_sg_rules = local.cloud.locals.db_security_group_rules[local.account_name_abr]
     resource_lb_sg_rules = local.cloud.locals.lb_security_group_rules[local.account_name_abr]
     resource_lb_vpc_sg_rules = local.cloud.locals.lb_vpc_security_group_rules[local.account_name_abr]
+    resource_account_map = local.company.locals.aws_account_map[local.account_name_abr]
 }
 
 
