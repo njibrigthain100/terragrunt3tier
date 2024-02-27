@@ -24,7 +24,7 @@ include "env" {
 }
 
 locals  {
-    build_environment = "trn"
+    build_environment = "stage"
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
@@ -88,7 +88,6 @@ remote_state {
         region = local.aws_region
         encrypt = true
         profile = include.env.locals.resource_profile 
-        // role_arn = "${local.iam_role}"
     }
 }
 generate "provider" {
