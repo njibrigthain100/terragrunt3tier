@@ -97,8 +97,6 @@ generate "provider" {
   contents  = <<EOF
 provider "aws" {
   region   = "${local.aws_region}"
-  access_key = "AKIAXB5IN5PEMLIYK37S"
-  secret_key = "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"
 //   assume_role {
 //     role_arn = "${local.iam_role}"
   }
