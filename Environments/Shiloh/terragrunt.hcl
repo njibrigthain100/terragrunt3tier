@@ -24,11 +24,10 @@ include "env" {
 }
 
 locals  {
-    build_environment = "stage"
+    build_environment = "dev"
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
-    // iam_role = "arn:aws:iam::485147667400:role/github_actions_role"
    
 }
 
@@ -81,7 +80,6 @@ remote_state {
     path = "s3-backend.tf"
     if_exists = "overwrite_terragrunt"
  }
-}
 
  config = {
         bucket = local.state_bucket
@@ -89,7 +87,7 @@ remote_state {
         dynamodb_table = local.dynamoDB_table
         region = local.aws_region
         encrypt = true
-
+    }
 }
 generate "provider" {
   path      = "provider.tf"
