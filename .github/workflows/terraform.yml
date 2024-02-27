@@ -61,7 +61,11 @@ jobs:
     - name: Terragrunt Init
       env:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+        role-to-assume: ${{ secrets.AWS_ROLE }}
+        role-session-name: samplerolesession
+        aws-region: ${{ secrets.AWS_REGION}}
       run: terragrunt init 
+      continue-on-error: true
 
     # Generates an execution plan for Terragrunt
     - name: Terragrunt Plan
