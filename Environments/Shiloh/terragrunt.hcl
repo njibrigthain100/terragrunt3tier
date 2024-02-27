@@ -25,7 +25,7 @@ include "env" {
 }
 
 locals  {
-    build_environment = "dev"
+    build_environment = "sit"
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
@@ -84,7 +84,7 @@ remote_state {
 
  config = {
         bucket = local.state_bucket
-        key   =  "${local.build_environment}/terraform.tfstate"
+        key   =  "${local.build_environment}/${include.company.locals.aws_account_map}/terraform.tfstate"
         dynamodb_table = local.dynamoDB_table
         region = local.aws_region
         encrypt = true
