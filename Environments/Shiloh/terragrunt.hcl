@@ -97,8 +97,8 @@ generate "provider" {
   contents  = <<EOF
 provider "aws" {
   region   = "${local.aws_region}"
-  assume_role {
-    role_arn = "${local.iam_role}"
+//   assume_role {
+//     role_arn = "${local.iam_role}"
   }
 }
 EOF
