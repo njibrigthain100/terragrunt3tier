@@ -64,8 +64,6 @@ jobs:
       run: | 
         cd Environments/Shiloh  
         terragrunt init 
-    
-
     # Generates an execution plan for Terragrunt
     - name: Terragrunt Plan
       run: terragrunt run-all plan --terragrunt-non-interactive
