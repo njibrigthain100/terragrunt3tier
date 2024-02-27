@@ -1,6 +1,7 @@
 
 terraform {
-    source = "../../terraform-modules"
+    source = "git::git@github.com:njibrigthain100/terragrunt-modules.git"
+    #../../terraform-modules
     #git::git@github.com:njibrigthain100/terragrunt-modules.git
     
 }
@@ -24,11 +25,10 @@ include "env" {
 }
 
 locals  {
-    build_environment = "stage"
+    build_environment = "dev"
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
-    // iam_role = "arn:aws:iam::485147667400:role/github_actions_role"
    
 }
 
@@ -81,6 +81,7 @@ remote_state {
     path = "s3-backend.tf"
     if_exists = "overwrite_terragrunt"
  }
+
  config = {
         bucket = local.state_bucket
         key   =  "${local.build_environment}/terraform.tfstate"

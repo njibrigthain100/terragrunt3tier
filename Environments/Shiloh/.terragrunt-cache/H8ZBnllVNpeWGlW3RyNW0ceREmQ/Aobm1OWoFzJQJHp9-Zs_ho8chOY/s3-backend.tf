@@ -4,8 +4,7 @@ terraform {
     bucket         = "distributorbk"
     dynamodb_table = "Terraform"
     encrypt        = true
-    key            = "trn/terraform.tfstate"
-    profile        = "shilohIT"
+    key            = "dev/terraform.tfstate"
     region         = "us-east-1"
   }
 }
