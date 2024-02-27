@@ -90,6 +90,7 @@ remote_state {
         encrypt = true
     }
 }
+}
 generate "provider" {
   path      = "provider.tf"
   if_exists = "overwrite"
