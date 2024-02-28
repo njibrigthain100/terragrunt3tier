@@ -63,9 +63,9 @@ locals {
     }
 
     appserver_names = {
-        shiloh = ["cobsine01", "cobsine02"]
-        qa = ["cobsine01", "cobsine02"]
-        devops = ["cobsine01", "cobsine02"]
+        shiloh = ["Cobsine-A-01", "CobsineA-02"]
+        qa = ["Cobsine-A-01", "Cobsine-A-02"]
+        devops = ["Cobsine-A-01", "Cobsine-A-02"]
     }
 
     webserver_dotnet_names = {
@@ -81,9 +81,9 @@ locals {
     }
 
     dbserver_names = {
-        shiloh = ["NT-DB-01", "NT-DB-02"]
-        qa = ["NT-DB-01", "NT-DB-02"]
-        devops = ["NT-DB-01", "NT-DB-02"]
+        shiloh = ["Cobsine-DB-01", "Cobsine-DB-02"]
+        qa = ["Cobsine-DB-01", "Cobsine-DB-02"]
+        devops = ["Cobsine-DB-01", "Cobsine-DB-02"]
     }
 
     loadbalancer_names = {
