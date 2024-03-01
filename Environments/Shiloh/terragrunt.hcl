@@ -25,7 +25,7 @@ include "env" {
 }
 
 locals  {
-    build_environment = "pfg123"
+    build_environment = "Cloud"
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
