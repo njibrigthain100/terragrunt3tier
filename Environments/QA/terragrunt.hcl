@@ -1,6 +1,8 @@
 
 terraform {
-    source = "git::git@github.com:njibrigthain100/terragrunt-modules.git"
+    source = "git::https://github.com/njibrigthain100/terragrunt-modules.git"
+    #../../terraform-modules
+    #git::git@github.com:njibrigthain100/terragrunt-modules.git
     
 }
 include "root" {
@@ -23,7 +25,7 @@ include "env" {
 }
 
 locals  {
-    build_environment = "2"
+    build_environment = "pfg123"
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
@@ -81,11 +83,19 @@ remote_state {
  }
  config = {
         bucket = local.state_bucket
-        key   =  "${local.build_environment}/terraform.tfstate"
+        key   =  "${local.build_environment}/${include.env.locals.resource_account_map}/terraform.tfstate"
         dynamodb_table = local.dynamoDB_table
         region = local.aws_region
         encrypt = true
-        profile = include.env.locals.resource_profile 
+        }
+}
+
+generate "provider" {
+  path      = "provider.tf"
+  if_exists = "overwrite"
+  contents  = <<EOF
+provider "aws" {
+  region   = "${local.aws_region}" 
     }
 }
 
