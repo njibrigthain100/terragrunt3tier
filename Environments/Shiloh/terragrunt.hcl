@@ -25,21 +25,7 @@ include "env" {
 }
 
 locals  {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    build_environment = "Cloud"
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
-    build_environment = "pfg123"
-=======
     build_environment = "newtechnology"
->>>>>>> Stashed changes
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     aws_region = "us-east-1"
     state_bucket = "distributorbk"
     dynamoDB_table = "Terraform"
