@@ -176,7 +176,7 @@ resource "aws_instance" "customer-appserver" {
 
   tags = merge(local.common_tags,
     {
-      Name = element(var.appserver-names, count.index)
+      Name = "${var.Owner}-${var.Environment}-${element(var.appserver-names, count.index)}"
     }
   )
 }
